@@ -5,7 +5,19 @@ const Todos = require("../models/todos.models");
 router.get('/api/v1/todos', async (req, res) => {
     try {
         const Tasks = await Todos.findAll({
-            attributes: ['id', 'title', 'description', 'status']
+            attributes: ['id', 'title', 'description', 'completed']
+        })
+        res.json(Tasks)
+    } catch (error) {
+        res.status(400).json(error)
+    }
+});
+
+router.get('/api/v1/todos/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const Tasks = await Todos.findOne({
+            where: { id }
         })
         res.json(Tasks)
     } catch (error) {

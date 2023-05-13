@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./utils/databases')
-const port = 8000
+require('dotenv').config()
+const port = process.env.PORT || 8000
 const todosRoutes = require('./routes/todos.routes');
 
 db.authenticate()
@@ -12,7 +13,7 @@ db.authenticate()
     console.log('error: ' + err);
 });
 
-db.sync()
+db.sync({ alter: true })
 .then(() => {
  console.log('Base de datos sincronizada');
 })

@@ -8,7 +8,6 @@ const Todos = db.define(
         primaryKey: true,
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        allowNull: false,
        },
        title:{
         type: DataTypes.STRING,
@@ -18,9 +17,9 @@ const Todos = db.define(
         type: DataTypes.STRING,
         allowNull: false
        },
-       status: {
+       completed: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        defaultValue: false
        }
      }
      );
